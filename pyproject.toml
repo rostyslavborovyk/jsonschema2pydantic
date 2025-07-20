@@ -1,0 +1,61 @@
+[project]
+name = "jsonschema2pydantic"
+version = "0.1.0"
+description = "Convert jsonschema to pydantic model"
+readme = "README.md"
+authors = [
+    { name = "rostyslav", email = "rostmoguchiy@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.11.7",
+]
+package = true
+license = "MIT"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.12.4",
+]
+
+[tool.ruff]
+src = ["src", "tests"]  # Customize as needed
+line-length = 100
+
+# Target Python version
+target-version = "py312"
+
+select = [
+    "F",    # Pyflakes
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "I",    # isort
+    "N",    # pep8-naming
+    "D",    # pydocstyle
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "C90",  # mccabe
+    "PT",   # flake8-pytest-style
+    "SIM",  # flake8-simplify
+    "TID",  # tidy imports
+    "ERA",  # eradicate (dead code)
+]
+ignore = [
+    "D100",
+    "D104",
+    "D107",
+    "D203",
+    "D213",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+include = '\.pyi?$'
