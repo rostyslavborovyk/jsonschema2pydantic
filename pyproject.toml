@@ -1,12 +1,12 @@
 [project]
 name = "jsonschema2pydantic"
-version = "0.1.0"
+version = "0.1.1"
 description = "Convert jsonschema to pydantic model"
 readme = "README.md"
 authors = [
     { name = "rostyslav", email = "rostmoguchiy@gmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "pydantic>=2.11.7",
 ]
