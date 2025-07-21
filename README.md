@@ -17,7 +17,7 @@ from jsonschema2pydantic import generate_schema
 class Model(BaseModel):
     field_1: str
     field_2: int
-    field_2: bool
+    field_3: bool
 
 DynamicModel = generate_schema({
   "properties": {
@@ -27,12 +27,17 @@ DynamicModel = generate_schema({
     },
     "field_2": {
       "title": "Field 2",
+      "type": "integer"
+    },
+    "field_3": {
+      "title": "Field 3",
       "type": "boolean"
     }
   },
   "required": [
     "field_1",
-    "field_2"
+    "field_2",
+    "field_3"
   ],
   "title": "Model",
   "type": "object"
