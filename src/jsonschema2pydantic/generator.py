@@ -49,7 +49,7 @@ class SchemaGenerator:
         defs = self._definitions_raw["$defs"][name]
 
         self._definitions[name] = self._generate_schema(
-            title=defs["title"],
+            title=defs.get("title") or name,
             properties=defs["properties"],
             additional_properties=defs.get("additionalProperties"),
         )
@@ -126,7 +126,7 @@ class SchemaGenerator:
     def generate_schema(self) -> type[BaseModel]:
         """Generate pydantic schema from json schema definition."""
         return self._generate_schema(
-            title=self._definitions_raw["title"],
+            title=self._definitions_raw.get("title") or "Root",
             properties=self._definitions_raw["properties"],
             additional_properties=self._definitions_raw.get("additionalProperties"),
         )
