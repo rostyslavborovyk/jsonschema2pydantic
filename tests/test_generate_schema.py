@@ -346,3 +346,55 @@ def test_big_schema_with_dict14():
 
     with pytest.raises(ValidationError):
         assert isinstance(model_class.model_validate({"field_1": {"2": "a"}}), BaseModel)
+
+
+def test_simple_schema_15():
+    schema_raw = {
+        "title": "Parent",
+        "type": "object",
+        "properties": {
+            "field_1": {
+                "type": "integer"
+            },
+            "field_2": {
+                "type": "string"
+            },
+            "field_3": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/$defs/Child"
+                }
+            }
+        },
+        "required": [
+            "field_1",
+            "field_2",
+            "field_3"
+        ],
+        "$defs": {
+            "Child": {
+                "type": "object",
+                "properties": {
+                    "field_5": {
+                        "type": "integer"
+                    },
+                    "field_6": {
+                        "type": "string"
+                    },
+                },
+                "required": [
+                    "field_5",
+                    "field_6",
+
+                ],
+                "additionalProperties": False
+            },
+        },
+        "additionalProperties": False
+    }
+
+    model_class = generate_schema(schema_raw)
+
+    data = {"field_1": 50, "field_2": "value 2", "field_3": [{"field_5": 1, "field_6": "abc"}]}
+
+    assert isinstance(model_class.model_validate(data), BaseModel)

@@ -1,6 +1,6 @@
 [project]
 name = "jsonschema2pydantic"
-version = "0.1.2"
+version = "0.1.3"
 description = "Convert jsonschema to pydantic model"
 readme = "README.md"
 authors = [
